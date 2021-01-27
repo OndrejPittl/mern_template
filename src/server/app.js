@@ -4,6 +4,7 @@ import { graphqlHTTP } from 'express-graphql';
 import mongoose from 'mongoose';
 import graphqlSchema from './graphql/schemas/index';
 import graphqlResolvers from './graphql/resolvers/index';
+import isAuth from './middlewear/is-auth';
 
 // import helmet from 'helmet';
 // import session from 'express-session';
@@ -16,6 +17,8 @@ const app = express();
 
 // middlewear parsing incoming JSON
 app.use(bodyParser.json());
+
+app.use(isAuth);
 
 app.use(
   '/graphql',

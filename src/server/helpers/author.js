@@ -2,8 +2,6 @@ import Author from '../models/author';
 import { findBooks } from './book';
 import { dateToString } from '../utils/date';
 
-
-
 /**
  * Fetches authors and its dependent entities (books).
  * @param {ObjectId} authorIds array of ids of the authors

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import Author from '../../models/author';
 import { transformAuthor } from '../../helpers/author';
 
@@ -19,7 +20,11 @@ const resolver = {
    * Creates new author.
    * @param {*} args
    */
-  createAuthor: async args => {
+  createAuthor: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated!');
+    }
+
     const { name, birthdate } = args.input;
     try {
       const existingAuthor = await Author.findOne({ name });

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import Author from '../../models/author';
 import Book from '../../models/book';
 import { transformBook } from '../../helpers/book';
@@ -19,7 +20,11 @@ const resolver = {
   /**
    * Creates a book.
    */
-  createBook: async args => {
+  createBook: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated!');
+    }
+
     const { title, rating, genre } = args.input;
     const book = new Book({
       title,
@@ -33,6 +38,8 @@ const resolver = {
       const result = await book.save();
       createdBook = transformBook(result);
       const author = await Author.findById('5fbaebb37b1008e597e82d3e');
+
+      console.log(req.userId, author);
 
       if (!author) {
         throw new Error('Author not found.');

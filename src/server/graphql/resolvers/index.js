@@ -1,9 +1,11 @@
 import authorResolver from './author';
 import bookResolver from './book';
+import userResolver from './user';
 
 const resolvers = {
   ...authorResolver,
-  ...bookResolver
+  ...bookResolver,
+  ...userResolver
 };
 
 export default resolvers;

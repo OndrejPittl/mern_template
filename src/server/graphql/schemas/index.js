@@ -36,13 +36,34 @@ const schema = buildSchema(`
     name: String!
     birthdate: String
   }
+  type User {
+    _id: ID!
+    firstName: String
+    lastName: String
+    email: String!
+    password: String
+  }
+  input UserInput {
+    firstName: String
+    lastName: String
+    email: String!
+    password: String!
+  }
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+  }
   type RootQuery {
     authors: [Author!]!
     books: [Book!]!
+    users: [User!]!
+    login(email: String!, password: String!): AuthData!
   }
   type RootMutation {
     createBook(input: BookInput!): Book!
     createAuthor(input: AuthorInput!): Author!
+    createUser(input: UserInput!): User!
   }
   schema {
     query: RootQuery

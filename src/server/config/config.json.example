@@ -1,0 +1,15 @@
+{
+  "development" : {
+      "config_id": "development",
+      "app_name": "mern_template",
+      "app_desc": "mern_template_desc",
+      "node_port": 8080,
+      "database": "mern_template_db",
+      "authSecret": "mern_secret",
+      "authTokenExpiration": "1h"
+  },
+  "production": {
+      "config_id": "production",
+      "database": "mern_template_db_prod"
+  }
+}
